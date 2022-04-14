@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+message Image {
+    bytes data = 1;
+}
+
+message Id{
+    string id = 1;
+}
+
+message Text{
+    string text = 1;
+}
+
+service OCRServer{
+    rpc ImageSync(Text) returns(Text){}
+    rpc StoreImage(Image) returns(Id){}
+    rpc GetText(Id) returns(Text){}
+}
+
