@@ -1,0 +1,75 @@
+version: '3'
+
+x-mysql_commomn_env:
+  &mysql_commomn_env
+  MYSQL_ROOT_PASSWORD: root
+  MYSQL_DATABASE: ocr_result
+  MYSQL_USER: docker
+  MYSQL_PASSWORD: docker
+  TZ: 'Asia/Tokyo'
+
+services:
+  db:
+    image: mysql:5.7
+    container_name: mysql
+    platform: linux/x86_64
+    environment: *mysql_commomn_env
+    ports:
+      - '3306:3306'
+    volumes:
+      - mysql_data:/var/lib/mysql:Z
+    command: mysqld
+    networks:
+      - app-net
+
+  ocr_server:
+    build:
+      context: .
+      dockerfile: ocr_server/Dockerfile
+    image: ocr_image
+    container_name: ocr_server
+    restart: always
+    environment: *mysql_commomn_env
+    ports:
+      - '5001:5001'
+    volumes:
+      - ../src:/app/src:Z
+      - ../test:/app/test:Z
+
+    command:
+      [
+        "bash",
+        "-xc",
+        ""
+      ]
+    networks:
+      - app-net
+
+  api_server:
+    build:
+      context: .
+      dockerfile: api_server/Dockerfile
+    image: api_image
+    container_name: api_server
+    restart: always
+    ports:
+      - '5000:5000'
+    volumes:
+      - ../src:/app/src:Z
+      - ../test:/app/test:Z
+
+    command:
+      [
+        "bash",
+        "-xc",
+        ""
+      ]
+    networks:
+      - app-net
+
+volumes:
+  mysql_data:
+
+networks:
+  app-net:
+    driver: bridge

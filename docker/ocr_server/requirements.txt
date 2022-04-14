@@ -1,0 +1,5 @@
+grpcio-tools
+pandas
+SQLAlchemy
+pymysql
+sqlalchemy-utils
