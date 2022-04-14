@@ -11,6 +11,7 @@ RUN apt-get install -y \
     rng-tools \
     vim \
     && echo "export LANG=ja_JP.UTF-8" >> ~/.bashrc
+    
 
 COPY ./api_server/requirements.txt ./
 RUN pip3 install -U pip setuptools && pip3 --no-cache-dir install -r requirements.txt

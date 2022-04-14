@@ -3,3 +3,4 @@ pandas
 SQLAlchemy
 pymysql
 sqlalchemy-utils
+pyocr
