@@ -13,7 +13,7 @@ message Text{
 }
 
 service OCRServer{
-    rpc ImageSync(Text) returns(Text){}
+    rpc ImageSync(Image) returns(Text){}
     rpc StoreImage(Image) returns(Id){}
     rpc GetText(Id) returns(Text){}
 }

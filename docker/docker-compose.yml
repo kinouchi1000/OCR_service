@@ -35,6 +35,7 @@ services:
     volumes:
       - ../src:/app/src:Z
       - ../test:/app/test:Z
+      - ./ocr_server/images:/mnt/images
 
     command:
       [

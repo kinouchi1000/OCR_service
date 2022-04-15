@@ -16,7 +16,7 @@ class OCRServerStub(object):
         """
         self.ImageSync = channel.unary_unary(
                 '/OCRServer/ImageSync',
-                request_serializer=ocr__server__pb2.Text.SerializeToString,
+                request_serializer=ocr__server__pb2.Image.SerializeToString,
                 response_deserializer=ocr__server__pb2.Text.FromString,
                 )
         self.StoreImage = channel.unary_unary(
@@ -57,7 +57,7 @@ def add_OCRServerServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'ImageSync': grpc.unary_unary_rpc_method_handler(
                     servicer.ImageSync,
-                    request_deserializer=ocr__server__pb2.Text.FromString,
+                    request_deserializer=ocr__server__pb2.Image.FromString,
                     response_serializer=ocr__server__pb2.Text.SerializeToString,
             ),
             'StoreImage': grpc.unary_unary_rpc_method_handler(
@@ -92,7 +92,7 @@ class OCRServer(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/OCRServer/ImageSync',
-            ocr__server__pb2.Text.SerializeToString,
+            ocr__server__pb2.Image.SerializeToString,
             ocr__server__pb2.Text.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

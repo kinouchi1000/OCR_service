@@ -4,3 +4,4 @@ SQLAlchemy
 pymysql
 sqlalchemy-utils
 pyocr
+opencv-python

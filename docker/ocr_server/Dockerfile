@@ -14,6 +14,7 @@ RUN apt-get install -y \
     sudo \
     rng-tools \
     vim \
+    libgl1-mesa-dev \
     && echo "export LANG=ja_JP.UTF-8" >> ~/.bashrc
 
 COPY ./ocr_server/requirements.txt ./

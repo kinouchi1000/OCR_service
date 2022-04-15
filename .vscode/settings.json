@@ -3,7 +3,7 @@
     "python.linting.flake8Enabled": true,
     "python.formatting.provider": "black",
     "python.languageServer": "Pylance",
-    // "python.linting.flake8Args": ["--max-line-length 119"],
+    "python.linting.flake8Args": ["--max-line-length=120 --ignore=F401"],
     "python.linting.banditEnabled": true,
     "python.linting.mypyEnabled": true,
     "editor.formatOnSave": true,
