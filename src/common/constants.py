@@ -1,6 +1,6 @@
 MAX_WORKERS = 10
 
-OCR_IP = "[::]"
+OCR_IP = "ocr_server"
 OCR_PORT = "5001"
 
 # OCR Settings

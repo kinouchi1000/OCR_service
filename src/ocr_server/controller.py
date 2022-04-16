@@ -22,7 +22,7 @@ class Controller:
         Args:
             image(str): image data
         """
-        logger.info("start image sync")
+        logger.info(" start image sync")
         try:
             # decode image
             image_id = str(uuid.uuid1())
@@ -35,6 +35,7 @@ class Controller:
             text = self.ocr_handler.get_ocr_text(file_name=filename)
             # delete image file
             pathlib.Path(filename).unlink()
+            logger.info(f"result text : {text}")
             return text
         except Exception as e:
             logger.warn(f"error:{e}")

@@ -7,6 +7,7 @@ x-mysql_commomn_env:
   MYSQL_USER: docker
   MYSQL_PASSWORD: docker
   TZ: 'Asia/Tokyo'
+  GRPC_POLL_STRATEGY: poll
 
 services:
   db:
@@ -41,7 +42,7 @@ services:
       [
         "bash",
         "-xc",
-        ""
+        "cd /app/src && python3 run_ocr_server.py"
       ]
     networks:
       - app-net
@@ -63,7 +64,7 @@ services:
       [
         "bash",
         "-xc",
-        ""
+        "cd /app/src && python3 run_api_server.py"
       ]
     networks:
       - app-net
