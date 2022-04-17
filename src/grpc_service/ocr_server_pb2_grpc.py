@@ -21,13 +21,8 @@ class OCRServerStub(object):
                 )
         self.StoreImage = channel.unary_unary(
                 '/OCRServer/StoreImage',
-                request_serializer=ocr__server__pb2.Image.SerializeToString,
-                response_deserializer=ocr__server__pb2.Id.FromString,
-                )
-        self.GetText = channel.unary_unary(
-                '/OCRServer/GetText',
-                request_serializer=ocr__server__pb2.Id.SerializeToString,
-                response_deserializer=ocr__server__pb2.Text.FromString,
+                request_serializer=ocr__server__pb2.StoreImageParam.SerializeToString,
+                response_deserializer=ocr__server__pb2.Empty.FromString,
                 )
 
 
@@ -46,12 +41,6 @@ class OCRServerServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetText(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
 
 def add_OCRServerServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -62,13 +51,8 @@ def add_OCRServerServicer_to_server(servicer, server):
             ),
             'StoreImage': grpc.unary_unary_rpc_method_handler(
                     servicer.StoreImage,
-                    request_deserializer=ocr__server__pb2.Image.FromString,
-                    response_serializer=ocr__server__pb2.Id.SerializeToString,
-            ),
-            'GetText': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetText,
-                    request_deserializer=ocr__server__pb2.Id.FromString,
-                    response_serializer=ocr__server__pb2.Text.SerializeToString,
+                    request_deserializer=ocr__server__pb2.StoreImageParam.FromString,
+                    response_serializer=ocr__server__pb2.Empty.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -109,24 +93,7 @@ class OCRServer(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/OCRServer/StoreImage',
-            ocr__server__pb2.Image.SerializeToString,
-            ocr__server__pb2.Id.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def GetText(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/OCRServer/GetText',
-            ocr__server__pb2.Id.SerializeToString,
-            ocr__server__pb2.Text.FromString,
+            ocr__server__pb2.StoreImageParam.SerializeToString,
+            ocr__server__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

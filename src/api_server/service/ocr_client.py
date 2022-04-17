@@ -3,7 +3,7 @@ import logging
 
 from common.constants import OCR_IP, OCR_PORT
 from grpc_service import ocr_server_pb2_grpc, ocr_server_pb2
-from grpc_service.ocr_server_pb2 import Text, Image, Id
+from grpc_service.ocr_server_pb2 import Text, Image, StoreImageParam, Empty
 
 logger = logging.getLogger(__name__)
 
@@ -21,17 +21,17 @@ class OCRClient:
             self._channel.close()
 
     def image_sync(self, image: bytes) -> str:
-        logger.info(f"image: {type(image)}")
+        logging.info("image_sync")
 
-        ret = Image(data=image)
-        feature: str = self.stub.ImageSync(ret)
+        request = Image(data=image)
+        feature: Text = self.stub.ImageSync(request)
 
         return feature.text
 
-    def store_image(self) -> None:
-        # TODO must implement
-        pass
+    async def store_image(self, image: bytes, id: str) -> int:
+        logging.info("store_image")
 
-    def get_text(self) -> None:
-        # TODO must implement
-        pass
+        request = StoreImageParam(data=image, id=id)
+        feature: Empty = self.stub.StoreImage(request)
+
+        return feature.status_code

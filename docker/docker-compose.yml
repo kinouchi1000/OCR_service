@@ -56,6 +56,7 @@ services:
     image: api_image
     container_name: api_server
     restart: always
+    environment: *mysql_commomn_env
     ports:
       - '5000:5000'
     volumes:

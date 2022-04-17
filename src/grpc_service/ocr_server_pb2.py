@@ -3,6 +3,7 @@
 # source: ocr_server.proto
 """Generated protocol buffer code."""
 from google.protobuf import descriptor as _descriptor
+from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import message as _message
 from google.protobuf import reflection as _reflection
 from google.protobuf import symbol_database as _symbol_database
@@ -13,118 +14,14 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor.FileDescriptor(
-  name='ocr_server.proto',
-  package='',
-  syntax='proto3',
-  serialized_options=None,
-  create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x10ocr_server.proto\"\x15\n\x05Image\x12\x0c\n\x04\x64\x61ta\x18\x01 \x01(\x0c\"\x10\n\x02Id\x12\n\n\x02id\x18\x01 \x01(\t\"\x14\n\x04Text\x12\x0c\n\x04text\x18\x01 \x01(\t2_\n\tOCRServer\x12\x1c\n\tImageSync\x12\x06.Image\x1a\x05.Text\"\x00\x12\x1b\n\nStoreImage\x12\x06.Image\x1a\x03.Id\"\x00\x12\x17\n\x07GetText\x12\x03.Id\x1a\x05.Text\"\x00\x62\x06proto3'
-)
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10ocr_server.proto\"\x15\n\x05Image\x12\x0c\n\x04\x64\x61ta\x18\x01 \x01(\x0c\"+\n\x0fStoreImageParam\x12\x0c\n\x04\x64\x61ta\x18\x01 \x01(\x0c\x12\n\n\x02id\x18\x02 \x01(\t\"\x1c\n\x05\x45mpty\x12\x13\n\x0bstatus_code\x18\x01 \x01(\x05\"\x14\n\x04Text\x12\x0c\n\x04text\x18\x01 \x01(\t2S\n\tOCRServer\x12\x1c\n\tImageSync\x12\x06.Image\x1a\x05.Text\"\x00\x12(\n\nStoreImage\x12\x10.StoreImageParam\x1a\x06.Empty\"\x00\x62\x06proto3')
 
 
 
-
-_IMAGE = _descriptor.Descriptor(
-  name='Image',
-  full_name='Image',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='data', full_name='Image.data', index=0,
-      number=1, type=12, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"",
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=20,
-  serialized_end=41,
-)
-
-
-_ID = _descriptor.Descriptor(
-  name='Id',
-  full_name='Id',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='id', full_name='Id.id', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=43,
-  serialized_end=59,
-)
-
-
-_TEXT = _descriptor.Descriptor(
-  name='Text',
-  full_name='Text',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='text', full_name='Text.text', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=61,
-  serialized_end=81,
-)
-
-DESCRIPTOR.message_types_by_name['Image'] = _IMAGE
-DESCRIPTOR.message_types_by_name['Id'] = _ID
-DESCRIPTOR.message_types_by_name['Text'] = _TEXT
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
-
+_IMAGE = DESCRIPTOR.message_types_by_name['Image']
+_STOREIMAGEPARAM = DESCRIPTOR.message_types_by_name['StoreImageParam']
+_EMPTY = DESCRIPTOR.message_types_by_name['Empty']
+_TEXT = DESCRIPTOR.message_types_by_name['Text']
 Image = _reflection.GeneratedProtocolMessageType('Image', (_message.Message,), {
   'DESCRIPTOR' : _IMAGE,
   '__module__' : 'ocr_server_pb2'
@@ -132,12 +29,19 @@ Image = _reflection.GeneratedProtocolMessageType('Image', (_message.Message,), {
   })
 _sym_db.RegisterMessage(Image)
 
-Id = _reflection.GeneratedProtocolMessageType('Id', (_message.Message,), {
-  'DESCRIPTOR' : _ID,
+StoreImageParam = _reflection.GeneratedProtocolMessageType('StoreImageParam', (_message.Message,), {
+  'DESCRIPTOR' : _STOREIMAGEPARAM,
   '__module__' : 'ocr_server_pb2'
-  # @@protoc_insertion_point(class_scope:Id)
+  # @@protoc_insertion_point(class_scope:StoreImageParam)
   })
-_sym_db.RegisterMessage(Id)
+_sym_db.RegisterMessage(StoreImageParam)
+
+Empty = _reflection.GeneratedProtocolMessageType('Empty', (_message.Message,), {
+  'DESCRIPTOR' : _EMPTY,
+  '__module__' : 'ocr_server_pb2'
+  # @@protoc_insertion_point(class_scope:Empty)
+  })
+_sym_db.RegisterMessage(Empty)
 
 Text = _reflection.GeneratedProtocolMessageType('Text', (_message.Message,), {
   'DESCRIPTOR' : _TEXT,
@@ -146,51 +50,18 @@ Text = _reflection.GeneratedProtocolMessageType('Text', (_message.Message,), {
   })
 _sym_db.RegisterMessage(Text)
 
+_OCRSERVER = DESCRIPTOR.services_by_name['OCRServer']
+if _descriptor._USE_C_DESCRIPTORS == False:
 
-
-_OCRSERVER = _descriptor.ServiceDescriptor(
-  name='OCRServer',
-  full_name='OCRServer',
-  file=DESCRIPTOR,
-  index=0,
-  serialized_options=None,
-  create_key=_descriptor._internal_create_key,
-  serialized_start=83,
-  serialized_end=178,
-  methods=[
-  _descriptor.MethodDescriptor(
-    name='ImageSync',
-    full_name='OCRServer.ImageSync',
-    index=0,
-    containing_service=None,
-    input_type=_IMAGE,
-    output_type=_TEXT,
-    serialized_options=None,
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='StoreImage',
-    full_name='OCRServer.StoreImage',
-    index=1,
-    containing_service=None,
-    input_type=_IMAGE,
-    output_type=_ID,
-    serialized_options=None,
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='GetText',
-    full_name='OCRServer.GetText',
-    index=2,
-    containing_service=None,
-    input_type=_ID,
-    output_type=_TEXT,
-    serialized_options=None,
-    create_key=_descriptor._internal_create_key,
-  ),
-])
-_sym_db.RegisterServiceDescriptor(_OCRSERVER)
-
-DESCRIPTOR.services_by_name['OCRServer'] = _OCRSERVER
-
+  DESCRIPTOR._options = None
+  _IMAGE._serialized_start=20
+  _IMAGE._serialized_end=41
+  _STOREIMAGEPARAM._serialized_start=43
+  _STOREIMAGEPARAM._serialized_end=86
+  _EMPTY._serialized_start=88
+  _EMPTY._serialized_end=116
+  _TEXT._serialized_start=118
+  _TEXT._serialized_end=138
+  _OCRSERVER._serialized_start=140
+  _OCRSERVER._serialized_end=223
 # @@protoc_insertion_point(module_scope)

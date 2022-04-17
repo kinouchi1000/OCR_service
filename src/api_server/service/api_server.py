@@ -20,7 +20,7 @@ class Text(BaseModel):
 
 
 class Id(BaseModel):
-    id: str
+    task_id: str
 
 
 @app.post("/image-sync")
@@ -30,10 +30,12 @@ def read_root(image: Image):
 
 
 @app.post("/image")
-def read_item(item_id: int, q: str = None):
-    return {"item_id": item_id, "q": q}
+def read_item(image: Image):
+    id = controller.store_image(image.image_data)
+    return {"task_id": id}
 
 
 @app.get("/image")
-def read_item(item_id: int, q: str = None):
-    return {"item_id": item_id, "q": q}
+def read_item(id: Id):
+    text = controller.get_text(id.task_id)
+    return {"task_id": text}

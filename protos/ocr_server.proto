@@ -4,9 +4,17 @@ message Image {
     bytes data = 1;
 }
 
-message Id{
-    string id = 1;
+message StoreImageParam{
+    bytes data = 1;
+    string id = 2;
 }
+message Empty{
+    int32 status_code = 1;
+}
+
+// message Id{
+//     string id = 1;
+// }
 
 message Text{
     string text = 1;
@@ -14,7 +22,7 @@ message Text{
 
 service OCRServer{
     rpc ImageSync(Image) returns(Text){}
-    rpc StoreImage(Image) returns(Id){}
-    rpc GetText(Id) returns(Text){}
+    rpc StoreImage(StoreImageParam) returns(Empty){}
+    //rpc GetText(Id) returns(Text){}
 }
 

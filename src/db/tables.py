@@ -6,6 +6,7 @@ from typing import Optional
 
 
 from sqlalchemy import DATETIME, Column, Integer, String, DateTime, Table
+from sqlalchemy.dialects.mysql import LONGTEXT
 
 from sqlalchemy.sql import func
 from sqlalchemy_utils import UUIDType
@@ -29,13 +30,13 @@ class OCRResult:
         "ocr_result",
         mapper_registy.metadata,
         Column("id", UUIDType(binary=False), primary_key=True, default=uuid.uuid4),
-        Column("text", String(256)),
-        Column("image_path", String(256)),
+        Column("text", LONGTEXT, nullable=True),
+        Column("image_path", String(256), nullable=True),
         Column("date_time", DATETIME, server_default=func.now(), onupdate=func.now()),
     )
     id: uuid.UUID = None
-    text: str = None
-    image_path: str = None
+    text: Optional[str] = None
+    image_path: Optional[str] = None
     date_time: Optional[datetime.datetime] = None
 
     def to_obj(self):
