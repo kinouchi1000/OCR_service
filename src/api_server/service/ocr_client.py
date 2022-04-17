@@ -1,9 +1,9 @@
 import asyncio
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ProcessPoolExecutor
 import grpc
 import logging
 
-from common.constants import OCR_IP, OCR_PORT
+from common.constants import OCR_IP, OCR_PORT, MAX_WORKERS
 from grpc_service import ocr_server_pb2_grpc, ocr_server_pb2
 from grpc_service.ocr_server_pb2 import Text, Image, StoreImageParam, Empty
 
@@ -34,7 +34,7 @@ class OCRClient:
 
         logging.info("store_image")
         loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(None)
+        asyncio.set_event_loop(loop)
         request = StoreImageParam(data=image, id=id)
         loop.run_in_executor(None, self.stub.StoreImage, request)
         logging.info("finish store image")
