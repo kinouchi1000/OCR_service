@@ -42,7 +42,9 @@ services:
       [
         "bash",
         "-xc",
-        "cd /app/src && python3 run_ocr_server.py"
+        "sleep 5 ; cd /app/src && 
+        python3 -xc 'from db.tables import init_db; init_db()' &&
+        python3 run_ocr_server.py"
       ]
     networks:
       - app-net

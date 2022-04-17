@@ -3,5 +3,6 @@ pandas
 SQLAlchemy
 pymysql
 sqlalchemy-utils
+dataclasses
 pyocr
 opencv-python
