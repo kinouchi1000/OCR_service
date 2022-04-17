@@ -8,7 +8,9 @@ import sys
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("mode", help="select from [image-sync, post-image, get-image]")
+parser.add_argument(
+    "mode", help="select from [image-sync, post-image, get-image, image]"
+)
 parser.add_argument(
     "--image-path", help="default is test/data/test.png", default="test/data/test.png"
 )
@@ -39,7 +41,6 @@ class ClientTest:
 
         url = "http://127.0.0.1:5000/image-sync/"
         r = requests.post(url, data=image.json())
-        print(r)
         result = r.json()
         return result
 
@@ -53,7 +54,6 @@ class ClientTest:
 
         url = "http://127.0.0.1:5000/image/"
         r = requests.post(url, data=image.json())
-        print(r)
         result = r.json()
         return result
 
@@ -64,7 +64,6 @@ class ClientTest:
 
         url = "http://127.0.0.1:5000/image/"
         r = requests.get(url, data=id_param.json())
-        print(r)
         result = r.json()
         return result
 
@@ -89,6 +88,15 @@ if __name__ == "__main__":
             print("Please set id with --id")
             sys.exit(0)
         test = ClientTest.test_get_image(task_id=args.id)
+        print(test)
+
+    elif args.mode == "image":
+        if not args.image_path:
+            print("Please set image path with --image-path")
+            sys.exit(0)
+        task_id = ClientTest.test_post_image(args.image_path)
+        print(task_id)
+        test = ClientTest.test_get_image(task_id["task_id"])
         print(test)
 
     else:
