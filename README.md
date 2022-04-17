@@ -40,7 +40,12 @@ cd  ..
 3. Try to run some api
 
 I had prepared to run api with python code easily.
-Please confirm you are in /OCR_service
+
+But you can also confirm with `http://localhost:5000/<api endpoint>` 
+
+
+
+Please confirm you are in `/OCR_service` 
 
 - If you want to run 'POST /image-sync'
   ```bash
@@ -100,6 +105,12 @@ docker compose down -t 0
 
 ## structure
 
+For future versatility, we have divided the API server and the OCR server into two separate container. By doing this, we expect to be able to adapt autoscaling using kubernetes, etc. and not add to the API server.
+
+I using ubuntu as OCR-server container and API-server container. 
+
+And I using MySQL by mysql server and access by sqlalchemy which is python module. 
+
 ### data flow
 
 when you request `POST /image-sync`, data-flow is like below.
@@ -108,16 +119,20 @@ when you request `POST /image-sync`, data-flow is like below.
 
 when you request `POST /image` and `GET /image`, data-flow is like below.
 
+when the API-server request Image and id to the OCR-server,  the API-server don't wait to come back and return id for user.
+
+I inplement with `python async` for this logic. 
+
 ![image](./README_image/image.png)
 
 ### Data base
 
-|  column name  |  type  | overview |
-| ---- | ---- | ---- |
-|  id  |  uuid.UUID  | primary key |
-|  text  |  LONGTEXT | OCR result  |
-| Image path | string | image apth in OCR server |
-| datetime | datetime | insert date time of OCR result |
+|  column name  |  type       | overview                       |
+| ------------- | ----------- | ------------------------------ |
+|  id           |  uuid.UUID  | primary key                    |
+|  text         |  LONGTEXT   | OCR result                     |
+| Image path    | string      | image apth in OCR server       |
+| datetime      | datetime    | insert date time of OCR result |
 
 ## test
 
