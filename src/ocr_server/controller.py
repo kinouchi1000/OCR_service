@@ -56,7 +56,5 @@ class Controller:
         # make OCR
         text = self.ocr_handler.get_ocr_text(file_name=filename)
 
-        logger.info(f"result text: {text}")
-
         # decode image
         Repository.update_result(id, text, filename)

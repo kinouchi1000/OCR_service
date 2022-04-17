@@ -1,3 +1,5 @@
+import asyncio
+from concurrent.futures import ThreadPoolExecutor
 import grpc
 import logging
 
@@ -28,10 +30,11 @@ class OCRClient:
 
         return feature.text
 
-    async def store_image(self, image: bytes, id: str) -> int:
+    def store_image(self, image: bytes, id: str):
+
         logging.info("store_image")
-
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(None)
         request = StoreImageParam(data=image, id=id)
-        feature: Empty = self.stub.StoreImage(request)
-
-        return feature.status_code
+        loop.run_in_executor(None, self.stub.StoreImage, request)
+        logging.info("finish store image")

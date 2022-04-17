@@ -29,15 +29,7 @@ class OCRServicer(ocr_server_pb2_grpc.OCRServerServicer):
         image: bytes = request.data
         self.controller.store_image(image=image, id=task_id)
         ret = ocr_server_pb2.Empty(status_code=0)
-
         return ret
-
-    # def GetText(self, request, context):
-    #     logger.info("GetText is called")
-
-    #     task_id: str = request.id
-    #     # TODO not implemented
-    #     return super().GetText(request, context)
 
 
 def servier():
