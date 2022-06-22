@@ -1,6 +1,4 @@
-# MERUKARI SUMMER INTERNSHIP OCR System
-
-I implemented OCR service API server in Merukari summer internship.
+#  OCR service API server.
 
 this service support **just English OCR**.
 
